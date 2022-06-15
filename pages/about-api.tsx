@@ -8,7 +8,8 @@ interface Props {
 const AboutApi : NextPage<Props> = ({ host }) => {
     return (
         <div className="body-wrapper flex flex-col">
-            <section className="flex flex-col px-5 pt-10 gap-2">
+            <section className="flex flex-col px-5 pt-5 gap-2">
+                <a className="text-red underline text-sm" href="/">&lt;- Go back</a>
                 <h1 className="font-bold">API</h1>
                 <p>There's only one endpoint in the api:</p>
                 <code className="text-red">POST : /api/link</code>

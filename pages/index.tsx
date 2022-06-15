@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import React, { useState } from 'react'
 import { FaReact } from 'react-icons/fa'
-import { SiPrisma, SiTailwindcss, SiGithub } from 'react-icons/si'
+import { SiPrisma, SiTailwindcss } from 'react-icons/si'
 import isUrlValid from '../utils/url-validator'
 
 // TODO: Get total uses of links
@@ -142,12 +142,6 @@ const Home: NextPage = () => {
                     ))
                 }
             </div>
-            <footer className="fixed flex justify-between p-3 text-sm bg-black text-white text-opacity-80 bottom-0 w-full">
-                <a href="/about-api">About API</a>
-                <a className="flex items-center gap-1" target="_blank" href="https://github.com/B0nBun">
-                    BonBon <SiGithub className="text-lg translate-y-[1px]"/>
-                </a>
-            </footer>
         </div>
         </>
     )
