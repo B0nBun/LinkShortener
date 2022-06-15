@@ -1,17 +1,19 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import React, { useState } from 'react'
 import { FaReact } from 'react-icons/fa'
 import { SiPrisma, SiTailwindcss, SiGithub } from 'react-icons/si'
 
-interface ServerProps {
-
-}
-
+// TODO: Get total uses of links
+// TODO: Animate it with tweening (it increases from 0 to total)
+// TODO: Courusel
 interface Section {
     icon : JSX.Element,
     header : string,
     text : JSX.Element
 }
+
+const sectionIconClass = (hexColor : string) => `text-8xl transition-colors hocus-active:text-[${hexColor}] focus:outline-none`
 
 const sections : Section[] = [
     {
@@ -23,7 +25,7 @@ const sections : Section[] = [
             </>
         ),
         icon : (
-            <a target="_blank" href="https://en.reactjs.org/" className="text-8xl transition-colors hocus-active:text-[#51caeb] focus:outline-none">
+            <a target="_blank" href="https://en.reactjs.org/" className={sectionIconClass('#51caeb')}>
                 <FaReact />
             </a>
         )
@@ -37,7 +39,7 @@ const sections : Section[] = [
             </>
         ),
         icon : (
-            <a target="_blank" href="https://www.prisma.io/" className="text-8xl transition-colors hocus-active:text-[#7baeea] focus:outline-none">
+            <a target="_blank" href="https://www.prisma.io/" className={sectionIconClass('#7baeea')}>
                 <SiPrisma />
             </a>
         )
@@ -50,16 +52,32 @@ const sections : Section[] = [
             officia explicabo ratione adipisci minus cum accusamus <i>porro</i> rerum iusto quia!
             </>
         ),
-        //#0ea5e9
         icon : (
-            <a target="_blank" href="https://tailwindcss.com/" className="text-8xl transition-colors hocus-active:text-[#0ea5e9] focus:outline-none">
+            <a target="_blank" href="https://tailwindcss.com/" className={sectionIconClass('#0ea5e9')}>
                 <SiTailwindcss />
             </a>
         )
     }
 ]
 
-const Home: NextPage<ServerProps> = () => {
+const isUrlValid = (url : string) => {
+    const anchor = document.createElement('a')
+    anchor.href = url
+    return Boolean(anchor.host && anchor.host !== window.location.host)
+}
+
+const Home: NextPage = () => {
+    const [error, setError] = useState('')
+    const [url, setUrl] = useState('');
+    
+    const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log(url, isUrlValid(url))
+        if (!isUrlValid(url)) {
+            setError('Error: Invalid Url')
+        }
+    }
+    
     return (
         <>        
         <Head>
@@ -68,14 +86,22 @@ const Home: NextPage<ServerProps> = () => {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="min-h-[100vh] flex flex-col items-center pb-10">
-            <div className="flex flex-col item-center gap-4 py-10">
+            <header className="flex flex-col item-center gap-4 py-10">
                 <h1 className="text-black text-center font-bold tracking-wide">Link Shortener</h1>
                 <h3 className="text-black text-center tracking-wide">Make your URLs shorter</h3>
-            </div>
-            <form onSubmit={e => e.preventDefault()} className="flex flex-col items-center gap-4 bg-red w-full py-10 px-5">
+            </header>
+            <span className="self-start empty:h-0 h-[2em] px-5 overflow-y-hidden transition-[height] text-red rounded-sm">{error}</span>
+            <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 bg-red w-full py-10 px-5">
                 <div className="text-lg w-full relative">
                     {/* Placeholder opacity doesn't work for some reason  */}
-                    <input id="url-input" className="w-full peer placeholder-0" type="text" placeholder="URL" />
+                    <input
+                        id="url-input"
+                        value={url}
+                        onChange={e => setUrl(e.currentTarget.value)}
+                        className="w-full peer placeholder-0"
+                        type="text"
+                        placeholder="URL"
+                    />
                     <label
                         className={`absolute
                         peer-placeholder-shown:top-1/2
@@ -102,7 +128,7 @@ const Home: NextPage<ServerProps> = () => {
                         URL
                     </label>
                 </div>
-                <button className="w-full">Shorten</button>
+                <button className="w-full transition-colors">Shorten</button>
             </form>
             <div className="flex flex-col items-center gap-10 py-10 px-4 text-black text-lg text-center">
                 {
