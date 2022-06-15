@@ -1,5 +1,5 @@
 import { Link, PrismaClient } from "@prisma/client";
-import isUrlValid from "./url-validator";
+import isUrlValid from "./utils/url-validator";
 
 const prisma = new PrismaClient()
 
