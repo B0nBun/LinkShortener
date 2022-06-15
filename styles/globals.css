@@ -40,3 +40,9 @@
         top: -100%;
     }
 }
+
+@layer components {
+    .body-wrapper {
+        @apply min-h-[100vh] bg-white pb-10 animate-fadein
+    }
+}
