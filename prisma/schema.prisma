@@ -13,5 +13,6 @@ datasource db {
 model Link {
   id Int @id @default(autoincrement()) @unique
   link String @db.VarChar(512)
+  redirect_count Int
   createdAt DateTime @default(now())
 }

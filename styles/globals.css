@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    h1 {
+        @apply text-3xl
+    }
+    h3 {
+        @apply text-lg
+    }
+
+    input {
+        @apply rounded-sm p-1
+    }
+
+    button {
+        @apply rounded p-2 bg-black text-white uppercase tracking-wider transition-transform
+    }
+
+    button:active {
+        @apply scale-95
+    }
+
+    a:hover, a:active, a:focus {
+        text-decoration : underline;
+    }
+
+    .placeholder-0::placeholder {
+        opacity : 0;
+    }
+    .placeholder-0::-webkit-input-placeholder {
+        opacity : 0;
+    }
+
+    .-top-1\/1 {
+        top: -100%;
+    }
+}
