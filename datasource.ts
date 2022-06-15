@@ -1,4 +1,5 @@
 import { Link, PrismaClient } from "@prisma/client";
+import isUrlValid from "./url-validator";
 
 const prisma = new PrismaClient()
 
@@ -58,6 +59,14 @@ const DataSource = {
             }
         }
 
+        if (isUrlValid(url)) {
+            return {
+                link : null,
+                encodedId : null,
+                msg : 'given url is not valid'
+            }
+        }
+        
         const result = await prisma.link.create({
             data : {
                 url,

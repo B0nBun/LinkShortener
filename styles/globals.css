@@ -18,10 +18,6 @@
         @apply rounded p-2 bg-black text-white uppercase tracking-wider transition-transform
     }
 
-    button:active {
-        @apply scale-95
-    }
-
     a:hover, a:active, a:focus {
         text-decoration : underline;
     }

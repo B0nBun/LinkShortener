@@ -12,7 +12,7 @@ datasource db {
 
 model Link {
   id Int @id @default(autoincrement()) @unique
-  link String @db.VarChar(512)
-  redirect_count Int
+  url String @db.VarChar(512)
+  redirect_count Int @default(0)
   createdAt DateTime @default(now())
 }

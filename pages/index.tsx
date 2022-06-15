@@ -3,10 +3,12 @@ import Head from 'next/head'
 import React, { useState } from 'react'
 import { FaReact } from 'react-icons/fa'
 import { SiPrisma, SiTailwindcss, SiGithub } from 'react-icons/si'
+import isUrlValid from '../url-validator'
 
 // TODO: Get total uses of links
 // TODO: Animate it with tweening (it increases from 0 to total)
 // TODO: Courusel
+// TODO: Page with total redirects to a specific page
 interface Section {
     icon : JSX.Element,
     header : string,
@@ -59,12 +61,6 @@ const sections : Section[] = [
         )
     }
 ]
-
-const isUrlValid = (url : string) => {
-    const anchor = document.createElement('a')
-    anchor.href = url
-    return Boolean(anchor.host && anchor.host !== window.location.host)
-}
 
 const Home: NextPage = () => {
     const [error, setError] = useState('')
