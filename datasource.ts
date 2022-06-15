@@ -59,7 +59,7 @@ const DataSource = {
             }
         }
 
-        if (isUrlValid(url)) {
+        if (!isUrlValid(url)) {
             return {
                 link : null,
                 encodedId : null,

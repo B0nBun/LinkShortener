@@ -29,7 +29,6 @@ module.exports = {
       white : '#F6F6F6',
       red : '#EE2B47',
       black : '#2C2E3E', 
-      'dark-grey' : '#34374C'
     },
     extend: {
 
@@ -43,10 +42,19 @@ module.exports = {
             opacity : 1,
             transform : 'translate(0%, 0%)'
           }
+        },
+        fadein : {
+          '0%' : {
+            opacity : 0
+          },
+          '100%' : {
+            opacity : 1
+          }
         }
       },
       animation : {
-        sectionfadein : 'sectionfadein .5s ease-in-out 1'
+        sectionfadein : 'sectionfadein .5s ease-in-out 1',
+        fadein : 'fadein .3s ease-in-out 1'
       }
     },
   },
