@@ -111,6 +111,29 @@ const DataSource = {
             }))
         if (!result.link) return null
         return result.link
+    },
+    async getLinkWithInc(encodedId : string) : Promise<Link | null> {
+        const decodedId = decodeId(encodedId)
+        const result = await prisma.link.update({
+            where : {
+                id : decodedId
+            },
+            data : {
+                redirect_count : {
+                    increment : 1
+                }
+            }
+        })
+            .then(link => ({
+                link,
+                msg : ''
+            }))
+            .catch((e : Error) => ({
+                link : null,
+                msg : e.message
+            }))
+        if (!result.link) return null
+        return result.link   
     }
 }
 

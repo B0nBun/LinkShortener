@@ -11,6 +11,7 @@ import isUrlValid from '../utils/url-validator'
 // TODO: Page with total redirects to a specific page
 // TODO: Captcha? Just for UI though
 // TODO: Try making randomly generated animation (e.g. blurry bubbles on the header background)
+// TODO: Test every page with each break-point
 interface Section {
     icon : JSX.Element,
     header : string,

@@ -39,7 +39,7 @@ const Add : NextPage<Props> = ({ newUrl, error }) => {
                     error ? (
                         <h2 className="bg-red text-white py-3 px-5 rounded-md">{error}</h2>
                     ) : (
-                        <h2 onClick={handleLinkClick} className="cursor-pointer border-4 border-red rounded-md py-3 px-5">{newUrl}</h2>
+                        <h2 onClick={handleLinkClick} className="cursor-pointer border-4 border-red rounded-md py-3 px-5 overflow-x-auto">{newUrl}</h2>
                     )
                 }
             </header>
