@@ -23,7 +23,6 @@ module.exports = {
   theme: {
     screens : {
       tablet : '860px',
-      desktop : '1200px'
     },
     colors : {
       white : '#F6F6F6',

@@ -12,7 +12,6 @@ type Props = {
     error : string
 }
 
-// TODO: Leave a link to redirect count here
 const Add : NextPage<Props> = ({ newUrl, error }) => {
     const [isCopied, setIsCopied] = useState(false)
     const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null)

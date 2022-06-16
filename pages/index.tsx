@@ -4,13 +4,11 @@ import React, { useState } from 'react'
 import { SiPrisma, SiTailwindcss, SiNextdotjs } from 'react-icons/si'
 import isUrlValid from '../utils/url-validator'
 
-// TODO: Get total uses of links
 // TODO: Animate it with tweening (it increases from 0 to total)
 // TODO: Courusel
-// TODO: Page with total redirects to a specific page
 // TODO: Captcha? Just for UI though
 // TODO: Try making randomly generated animation (e.g. blurry bubbles on the header background)
-// TODO: Test every page with each break-point
+// TODO: Add actual text instead of placeholders
 interface Section {
     icon : JSX.Element,
     header : string,
