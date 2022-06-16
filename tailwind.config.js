@@ -36,7 +36,7 @@ module.exports = {
         sectionfadein : {
           '0%' : {
             opacity : 0,
-            transform : 'translate(-100%, 0%)'
+            transform : 'translate(-50%, 0%)'
           },
           '100%' : {
             opacity : 1,
@@ -62,6 +62,7 @@ module.exports = {
     plugin(({ addVariant }) => {
       addVariant('hocus-active', ['&:focus', '&:hover', '&:active'])
       addVariant('italic-child', '& > i')
+      addVariant('child', '& > *')
     }),
     plugin(({ addUtilities }) => {
       addUtilities(animationDelayClasses)

@@ -7,7 +7,7 @@ interface Props {
 // TODO: Add API endpoint with redirect_count
 const AboutApi : NextPage<Props> = ({ host }) => {
     return (
-        <div className="body-wrapper flex flex-col">
+        <div className="body-wrapper flex flex-col max-w-5xl mx-auto tablet:text-lg">
             <section className="flex flex-col px-5 pt-5 gap-2">
                 <a className="text-red underline text-sm" href="/">&lt;- Go back</a>
                 <h1 className="font-bold">API</h1>

@@ -31,15 +31,15 @@ const Add : NextPage<Props> = ({ newUrl, error }) => {
     }, [timeoutId])
     
     return (
-        <div className="flex flex-col items-center body-wrapper">
+        <div className="flex flex-col items-center tablet:justify-center body-wrapper">
             <header className="flex flex-col items-center gap-4 py-10">
-                <h1 className={`font-bold ${error ? 'text-red' : ''}`}>{error ? 'Server Error!' : 'Here\' short link:'}</h1>
+                <h1 className={`font-bold ${error ? 'text-red' : ''}`}>{error ? 'Server Error!' : 'Here\'s your short link:'}</h1>
             <span className={`box-content flex items-center justify-center ${isCopied ? 'h-[2.2em]' : 'h-0'} px-5 overflow-y-hidden transition-[height] bg-red text-white rounded-sm`}>Copied!</span>
                 {
                     error ? (
-                        <h2 className="bg-red text-white py-3 px-5 rounded-md">{error}</h2>
+                        <h2 className="bg-red text-white py-3 px-5 w-full text-center rounded-md">{error}</h2>
                     ) : (
-                        <h2 onClick={handleLinkClick} className="cursor-pointer border-4 border-red rounded-md py-3 px-5 overflow-x-auto">{newUrl}</h2>
+                        <h2 onClick={handleLinkClick} className="cursor-pointer border-4 min-w-full text-center border-red rounded-md py-3 px-5 tablet:text-2xl tablet:py-5 overflow-x-auto">{newUrl}</h2>
                     )
                 }
             </header>
