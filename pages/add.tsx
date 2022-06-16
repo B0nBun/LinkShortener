@@ -43,7 +43,10 @@ const Add : NextPage<Props> = ({ newUrl, error }) => {
                     )
                 }
             </header>
-            <a className="text-xl bg-black text-white px-5 py-3 rounded-md" href="/">Go Back</a>
+            <div className="flex gap-5">
+                <a className="text-xl bg-black text-white px-5 py-3 rounded-md" href="/">Go Back</a>
+                <a className="text-xl bg-black text-white px-5 py-3 rounded-md" href={`/count?short_url=${newUrl}`}>Track Redirects</a>
+            </div>
         </div>
     )
 }

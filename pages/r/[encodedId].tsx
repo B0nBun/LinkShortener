@@ -19,8 +19,11 @@ export const getServerSideProps : GetServerSideProps = async (context) => {
     
     return {
         redirect : {
-            permanent : true,
-            destination : link.url
+            permanent : false,
+            // I don't know how to fix the problem where user doesn't input the protocol
+            // e.g. example.com will riderect not to https://example.com, but to http://hostname/r/example.com
+            // so I decided to put this ternary operator here
+            destination : !link.url.match(/https?:\/\//) ? `https://${link.url}` : link.url
         }
     }
 }
