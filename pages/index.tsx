@@ -1,8 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import React, { useState } from 'react'
-import { FaReact } from 'react-icons/fa'
-import { SiPrisma, SiTailwindcss } from 'react-icons/si'
+import { SiPrisma, SiTailwindcss, SiNextdotjs } from 'react-icons/si'
 import isUrlValid from '../utils/url-validator'
 
 // TODO: Get total uses of links
@@ -19,7 +18,7 @@ interface Section {
 }
 
 const sectionClasses = {
-    react : `text-8xl transition-colors hocus-active:text-[#51caeb] focus:outline-none`,
+    next : `text-8xl transition-colors hocus-active:text-[#0070f3] focus:outline-none`,
     prisma : `text-8xl transition-colors hocus-active:text-[#7baeea] focus:outline-none`,
     tailwind : `text-8xl transition-colors hocus-active:text-[#0ea5e9] focus:outline-none`
 } 
@@ -34,8 +33,8 @@ const sections : Section[] = [
             </>
         ),
         icon : (
-            <a target="_blank" href="https://en.reactjs.org/" className={sectionClasses.react}>
-                <FaReact />
+            <a target="_blank" href="https://nextjs.org/" className={sectionClasses.next}>
+                <SiNextdotjs />
             </a>
         )
     },
