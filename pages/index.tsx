@@ -72,10 +72,10 @@ interface Props {
 // e.g. 10 seconds tweening ends on 12th second
 const useTweening = <T extends unknown>(valByProgress : (progress : number) => T, duration_ms : number) : T => {
     const [progress, setProgress] = useState(0)
-    const inc = 1 / (duration_ms / 10)
+    const inc = 1 / (duration_ms / 15)
     useEffect(() => {
         if (progress < 1) {
-            setTimeout(() => setProgress(Math.min(1, progress + inc)), 10)
+            setTimeout(() => setProgress(Math.min(1, progress + inc)), 15)
         }
     }, [progress])
     return valByProgress(progress)
@@ -84,7 +84,10 @@ const useTweening = <T extends unknown>(valByProgress : (progress : number) => T
 const Home: NextPage<Props> = ({ totalRedirects }) => {
     const [error, setError] = useState('')
     const [url, setUrl] = useState('');
-    const tweenedRedirects = useTweening(progress => Math.round(progress * totalRedirects), 500)
+    const tweenedRedirects = useTweening(
+        progress => Math.floor(progress * totalRedirects),
+        1000
+    )
     const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
         if (!isUrlValid(url)) {
             e.preventDefault()
@@ -157,6 +160,7 @@ const Home: NextPage<Props> = ({ totalRedirects }) => {
                 <button className="w-full transition-colors">Shorten</button>
             </form>
             <h1 className="font-bold mt-10 px-2 text-center text-2xl tablet:text-4xl">Total Redirects: {tweenedRedirects}</h1>
+            <div className={`h-[4px] bg-red ${tweenedRedirects == totalRedirects ? 'w-full' : 'w-0'} transition-all duration-[1.5s] ease-in-out`} />
             <div className={`
                 flex flex-col items-center
                 tablet:flex-row tablet:max-w-7xl tablet:mt-10 tablet:child:flex-1 tablet:items-stretch
