@@ -1,7 +1,8 @@
-import { NextPage, GetServerSideProps } from "next";
+import { NextPage, GetServerSideProps, NextApiHandler } from "next";
 import DataSource from "../../datasource";
 
-// TODO: Maybe use NextApiHandler instead of a page
+// I don't think I can replace this NextPage with ApiHandler, since ApiHandlers can't return 404 page
+// like getServerSideProps can
 const Redirect : NextPage = () => {
     return <h1>Error 404: No url</h1>
 }

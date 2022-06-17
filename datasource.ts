@@ -133,6 +133,14 @@ const DataSource = {
             }))
         if (!result.link) return null
         return result.link   
+    },
+    async getTotalRedirects() : Promise<number> {
+        const aggr = await prisma.link.aggregate({
+            _sum : {
+                redirect_count : true
+            }
+        })
+        return aggr._sum.redirect_count || 0
     }
 }
 

@@ -1,10 +1,10 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SiPrisma, SiTailwindcss, SiNextdotjs } from 'react-icons/si'
+import DataSource from '../datasource'
 import isUrlValid from '../utils/url-validator'
 
-// TODO: Animate it with tweening (it increases from 0 to total)
 // TODO: Courusel
 // TODO: Captcha? Just for UI though
 // TODO: Try making randomly generated animation (e.g. blurry bubbles on the header background)
@@ -66,9 +66,27 @@ const sections : Section[] = [
     }
 ]
 
-const Home: NextPage = () => {
+interface Props {
+    totalRedirects : number
+}
+
+// The timeout is not accurate at all, but on small numbers it's not that noticable
+// e.g. 10 seconds tweening ends on 12th second
+const useTweening = <T extends unknown>(valByProgress : (progress : number) => T, duration_ms : number) : T => {
+    const [progress, setProgress] = useState(0)
+    const inc = 1 / (duration_ms / 10)
+    useEffect(() => {
+        if (progress < 1) {
+            setTimeout(() => setProgress(Math.min(1, progress + inc)), 10)
+        }
+    }, [progress])
+    return valByProgress(progress)
+}
+
+const Home: NextPage<Props> = ({ totalRedirects }) => {
     const [error, setError] = useState('')
     const [url, setUrl] = useState('');
+    const tweenedRedirects = useTweening(progress => Math.round(progress * totalRedirects), 500)
     
     const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
         if (!isUrlValid(url)) {
@@ -132,9 +150,10 @@ const Home: NextPage = () => {
                 </div>
                 <button className="w-full transition-colors">Shorten</button>
             </form>
+            <h1 className="font-bold mt-10 px-2 text-center text-2xl tablet:text-4xl">Total Redirects: {tweenedRedirects}</h1>
             <div className={`
                 flex flex-col items-center
-                tablet:flex-row tablet:max-w-7xl tablet:mt-20 tablet:child:flex-1 tablet:items-stretch
+                tablet:flex-row tablet:max-w-7xl tablet:mt-10 tablet:child:flex-1 tablet:items-stretch
                 gap-10 py-10 px-4 text-lg text-center`}>
                 {
                     sections.map((sec, idx) => (
@@ -153,5 +172,13 @@ const Home: NextPage = () => {
         </>
     )
 }
+
+export const getServerSideProps : GetServerSideProps<Props> = async () => {
+    return {
+        props : {
+            totalRedirects : await DataSource.getTotalRedirects()   
+        }
+    }
+} 
 
 export default Home
