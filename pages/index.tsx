@@ -113,7 +113,7 @@ const Home: NextPage<Props> = ({ totalRedirects }) => {
                 <h1 className="text-center font-bold tracking-wide z-10">Link Shortener</h1>
                 <h3 className="text-center tracking-wide z-10">Make your URLs shorter</h3>
             </header>
-            <span className="self-start empty:h-0 h-[2em] px-5 overflow-y-hidden transition-[height] text-red rounded-sm">{error}</span>
+            <span className="empty:h-0 h-[2em] px-5 overflow-y-hidden transition-[height] text-red rounded-sm">{error}</span>
             <form onSubmit={handleSubmit} method="POST" action="/add/" className="z-10 flex tablet:text-xl flex-col items-center gap-4 bg-red tablet:rounded-md w-full py-10 px-5 tablet:py-11 tablet:px-5">
                 <div className="text-lg w-full relative">
                     {/* Placeholder opacity doesn't work for some reason  */}
