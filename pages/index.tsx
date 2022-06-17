@@ -1,13 +1,11 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { SiPrisma, SiTailwindcss, SiNextdotjs } from 'react-icons/si'
 import DataSource from '../datasource'
 import isUrlValid from '../utils/url-validator'
 
 // TODO: Courusel
-// TODO: Captcha? Just for UI though
-// TODO: Try making randomly generated animation (e.g. blurry bubbles on the header background)
 // TODO: Add actual text instead of placeholders
 interface Section {
     icon : JSX.Element,
@@ -87,7 +85,6 @@ const Home: NextPage<Props> = ({ totalRedirects }) => {
     const [error, setError] = useState('')
     const [url, setUrl] = useState('');
     const tweenedRedirects = useTweening(progress => Math.round(progress * totalRedirects), 500)
-    
     const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
         if (!isUrlValid(url)) {
             e.preventDefault()
@@ -103,12 +100,21 @@ const Home: NextPage<Props> = ({ totalRedirects }) => {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="flex flex-col items-center body-wrapper child:max-w-xl">
-            <header className="flex flex-col items-center gap-4 py-10">
-                <h1 className="text-center font-bold tracking-wide">Link Shortener</h1>
-                <h3 className="text-center tracking-wide">Make your URLs shorter</h3>
+            <header className="flex flex-col items-center gap-4 py-10 relative">
+                <div className="absolute h-full w-full top-0 left-0  child:rounded-full child:blur-md child:absolute child:mix-blend-multiply child:opacity-50 child:animate-blob">
+                    <div className="w-32 h-32 bg-[#ffc1ff] -bottom-6 -right-8" style={{
+                        animationDelay : '1500ms'
+                    }}/>
+                    <div className="w-48 h-48 bg-[#c4f9ff] top-0 -left-10" style={{
+                        animationDelay : '4000ms'
+                    }}/>
+                    <div className="w-20 h-20 bg-[#b9e260] top-0 right-8" />
+                </div>
+                <h1 className="text-center font-bold tracking-wide z-10">Link Shortener</h1>
+                <h3 className="text-center tracking-wide z-10">Make your URLs shorter</h3>
             </header>
             <span className="self-start empty:h-0 h-[2em] px-5 overflow-y-hidden transition-[height] text-red rounded-sm">{error}</span>
-            <form onSubmit={handleSubmit} method="POST" action="/add/" className="flex tablet:text-xl flex-col items-center gap-4 bg-red tablet:rounded-md w-full py-10 px-5 tablet:py-11 tablet:px-5">
+            <form onSubmit={handleSubmit} method="POST" action="/add/" className="z-10 flex tablet:text-xl flex-col items-center gap-4 bg-red tablet:rounded-md w-full py-10 px-5 tablet:py-11 tablet:px-5">
                 <div className="text-lg w-full relative">
                     {/* Placeholder opacity doesn't work for some reason  */}
                     <input

@@ -49,11 +49,29 @@ module.exports = {
           '100%' : {
             opacity : 1
           }
+        },
+        blob : {
+          '0%' : {
+            transform : 'scale(1) translate(0%, 0%)'
+          },
+          '25%' : {
+            transform : 'scale(1.1) translate(-20%, 5%)',
+          },
+          '50%' : {
+            transform : 'scale(1) translate(-15%, 15%)',
+          },
+          '75%' : {
+            transform : 'scale(0.9) translate(10%, -5%)'
+          },
+          '100%' : {
+            transform : 'scale(1) translate(0%, 0%)'
+          },
         }
       },
       animation : {
         sectionfadein : 'sectionfadein .5s ease-in-out 1',
-        fadein : 'fadein .3s ease-in-out 1'
+        fadein : 'fadein .3s ease-in-out 1',
+        blob : 'blob 10s ease-in-out infinite'
       }
     },
   },
