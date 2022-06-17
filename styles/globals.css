@@ -43,6 +43,6 @@
 
 @layer components {
     .body-wrapper {
-        @apply min-h-[100vh] bg-white pb-10 animate-fadein
+        @apply min-h-[100vh] bg-white pb-10 tablet:pb-20 animate-fadein
     }
 }

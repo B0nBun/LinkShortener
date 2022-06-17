@@ -44,7 +44,6 @@ type AddLinkReturn = {
 const DataSource = {
     async addLink(url : string) : Promise<AddLinkReturn> {
         // Check if the same url already exists
-        // TODO: Maybe make a better check, that returns true for https://example.com == www.example.com
         const sameLink = await prisma.link.findFirst({
             where : {
                 url
